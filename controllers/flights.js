@@ -4,28 +4,32 @@ module.exports = {
     index,
     show,
     new: newFlight,
-    create,
-}
-
-function newFlight(req,res) {
-    res.render('flights/new')
-}
-
-
-function create(req, res) {
-    Flight.create(req.body);
-    res.redirect('/flights')
-}
-
-function show(req, res) {
-    res.render('flights/show', {
-        flight: Flight.getOne(req.params.id),
-        flightId: parseInt(req.params.id) + 1 
-    });
+    create
 }
 
 function index(req, res) {
-    res.render('flights/index', {
-      flights: Flight.getAll()
+    Flight.find({}, function(err, flights) {
+        res.render('flights/index', {
+            title: 'All Flights', flights
+        });
+    });
+}
+
+function show(req, res) {
+    Flight.findById(req.params.id, function(err, flight) {
+      res.render('flights/show', { title: 'Flight Details', flight });
+    });
+  }
+
+function newFlight(req, res) {
+    res.render('flights/new', { title: 'Add Flight' });
+}
+
+function create(req, res) {
+    var flight = new Flight(req.body);
+    flight.save(function(err) {
+        if (err) return res.render('flights/new');
+        console.log(flight);
+        res.redirect(`/flights/${flight._id}`);
     });
 }
