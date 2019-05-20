@@ -7,6 +7,25 @@
   <div><%= flight.flightNo %></div>
   <div>Departure: </div>
   <div><%= flight.departs %></div>
+  <label>Airport:</label>
+  <select name="airport">
+    <option value="AUS">AUS</option>
+    <option value="DAL">DAL</option>
+    <option value="LAX">LAX</option>
+    <option value="SEA">SEA</option>
+  </select>
+
+  <label>Destination:</label>
+  <select name="destinations">
+    <option value="AUS">AUS</option>
+    <option value="DAL">DAL</option>
+    <option value="LAX">LAX</option>
+    <option value="SEA">SEA</option>
+  </select>
+  <label>Arrival Date/ Time:</label>
+  <input type="datetime-local" name="arrival" min="2019-05-19" max="2020-05-19">
+  <input type="submit" value="Add Destination">
+  </form>
 </section>
 
 

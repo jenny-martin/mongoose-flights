@@ -16,22 +16,30 @@ var flightSchema = new Schema({
       type: Date,
       default: function () {
          return new Date().getFullYear() + 1;
-   }, 
+      },
+      airport: {
+         type: String,
+         required: true,
+         enum: ['AUS', 'DAL', 'LAX', 'SEA']
+      },
+      destinations: {
+         content: [destinationSchema]
+      },
       timestamps: true
    },
 });
 
 var destinationSchema = new Schema({
    airport: {
-         type: String, 
-         required: true,
-         enum: ['AUS', 'DAL', 'LAX', 'SEA']
+      type: String,
+      required: true,
+      enum: ['AUS', 'DAL', 'LAX', 'SEA']
    },
    arrival: {
-      type: Date, 
+      type: Date,
       default: function () {
-         return new Date().getFullYear() + 1;
-   }, 
+         return new Date().getFullYear();
+      },
       timestamps: true
    }
 });

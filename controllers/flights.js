@@ -1,5 +1,6 @@
 var Flight = require('../models/flight');
 
+
 module.exports = {
     index,
     show,
