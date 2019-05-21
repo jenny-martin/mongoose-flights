@@ -12,7 +12,11 @@
       <tr>
         <td><%= f.airline %></td>
         <td><%= f.flightNo %></td>
-        <td><%= f.departs %></td>
+        <% if (new Date()> f.departs) {%>
+        <td style="color:red"><%= f.departs %></td>
+        <% } else {%>
+          <td><%= f.departs %></td>
+          <% } %>
         <td><a href="/flights/<%= f._id %>">DETAILS</a></td>
       </tr>
       <% }); %>
